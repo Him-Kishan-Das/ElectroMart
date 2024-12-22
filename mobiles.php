@@ -15,7 +15,7 @@
         include './Components/Navbar.php';
     ?>
     <div class="brands">
-        <h1>Iphone</h1>
+        <h1 class="brands-header-section">Iphone</h1>
         <div class="mobiles-product-cards">
             <div class="mobiles-product-card">
                     <div class="mobiles-product-card-image">

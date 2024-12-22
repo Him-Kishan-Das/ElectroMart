@@ -11,10 +11,11 @@
             <div class="logo-name">ElectroMart</div>
         </div>
         <ul class="nav">
+            <li class="nav-items"><a href="./">Home</a></li>
             <li class="nav-items"><a href="./mobiles.php">Mobiles</a></li>
-            <li class="nav-items">Laptops</li>
-            <li class="nav-items">Cameras</li>
-            <li class="nav-items">Headphones</li>
+            <li class="nav-items"><a href="./laptops.php">Laptops</a></li>
+            <li class="nav-items"><a href="./cameras.php">Cameras</a></li>
+            <li class="nav-items"><a href="./headphones.php">Headphones</a></li>
         </ul>
     </div>
     
