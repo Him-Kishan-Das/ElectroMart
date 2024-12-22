@@ -1,0 +1,57 @@
+.mobiles-product-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobiles-product-card{
+    background-color: rgb(231, 236, 224);
+    height: 25rem;
+    width: 15rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 20px ;
+    margin: 20px;
+    box-shadow: -1px 1px 18px 4px rgb(190, 190, 190);
+}
+
+.mobiles-product-card-image{
+    width: 100%;
+    height: 18rem;
+    overflow: hidden;
+}
+
+.mobiles-product-card-image > img{
+    width: 100%;
+    height: 100%;
+}
+
+.mobiles-product-card-heading{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mobiles-product-discount-price{
+    font-size: 17px;
+
+}
+
+.mobiles-product-card-add-to-cart{
+    border-radius: 20px;
+    font-size: 17px;
+    background-color: rgb(255, 187, 0);
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    margin: 10px;
+}
+
+.mobiles-product-card-add-to-cart:hover{
+    cursor: pointer;
+    background-color: rgb(255, 174, 0);
+}
