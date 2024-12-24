@@ -55,6 +55,11 @@
 
 }
 
+.mobiles-product-actual-price{
+    text-decoration: line-through;
+    color: grey;
+}
+
 .mobiles-product-card-add-to-cart{
     border-radius: 20px;
     font-size: 17px;
@@ -115,6 +120,8 @@
 
 .laptop-product-actual-price{
     font-size: 17px;
+    color: grey;
+    text-decoration: line-through;
 }
 
 .laptop-product-card-add-to-cart{
@@ -177,6 +184,8 @@
 
 .camera-product-actual-price{
     font-size: 17px;
+    text-decoration: line-through;
+    color: grey;
 }
 
 .camera-product-card-add-to-cart{
@@ -239,6 +248,9 @@
 
 .headphones-product-actual-price{
     font-size: 17px;
+    text-decoration: line-through;
+    color: grey;
+    
 }
 
 .headphones-product-card-add-to-cart{
