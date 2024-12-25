@@ -14,7 +14,49 @@
 <body>
 <div class="signup-container">
         <h2>Create an Account</h2>
-        <form action="signup.php" method="POST">
+
+        <?php
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                include './Components/dbconnect.php';
+                $username = $_POST['username'];
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $confirmPassword = $_POST['confirmpassword'];
+                $gender = $_POST['gender'];
+                
+                $alreadyExistUsername = "SELECT * FROM `users` WHERE username='$username'";
+                $result = mysqli_query($conn, $alreadyExistUsername);
+                $rowsForUsername = mysqli_num_rows($result);
+
+                $alreadyExistEmail = "SELECT * FROM `users` WHERE email = '$email'";
+                $result1 = mysqli_query($conn, $alreadyExistEmail);
+                $rowsForEmail = mysqli_num_rows($result1);
+
+                if ($rowsForUsername>0){
+                    echo "Username already exist";
+                }
+                
+                if($rowsForEmail > 0){
+                    echo "Email already exist";
+                }
+
+                if($password == $confirmPassword){
+                    $finalPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $sql = "INSERT INTO `users`(`username`, `name`, `email`, `gender`, `password`, `timestamp`) VALUES ('$username','$name','$email','$gender', '$finalPassword', current_timestamp())";
+                    $result2 = mysqli_query($conn, $sql);
+                    if($result2){
+                        echo 'Signup Successfull!!';
+                    }
+                    else{
+                        echo "Signup Failes!!!";
+                    }
+                }
+
+            }
+
+        ?>
+        <form action="<?php  $_SERVER['REQUEST_URI'] ?>" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
@@ -33,7 +75,7 @@
             </div>
             <div class="form-group">
                 <label for="password">Confirm Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <input type="password" id="password" name="confirmpassword" placeholder="Enter your password" required>
             </div>
             <div class="form-group">
                 <label for="gender">Gender</label>
