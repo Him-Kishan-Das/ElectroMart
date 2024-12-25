@@ -16,6 +16,7 @@
 </head>
 <body>
     <?php
+        include './Components/dbconnect.php';
         include './Components/Navbar.php';
     ?>
 
