@@ -21,7 +21,7 @@
 
 .mobiles-product-card{
     background-color: rgb(231, 236, 224);
-    height: 25rem;
+    height: 28rem;
     width: 15rem;
     overflow: hidden;
     display: flex;
@@ -31,6 +31,7 @@
     border-radius: 20px ;
     margin: 20px;
     box-shadow: -1px 1px 18px 4px rgb(190, 190, 190);
+    text-align: center;
 }
 
 .mobiles-product-card-image{
@@ -48,6 +49,9 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    height: 45px;
+    margin: 5px;
+    overflow: hidden;
 }
 
 .mobiles-product-discount-price{
