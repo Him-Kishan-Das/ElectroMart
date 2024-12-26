@@ -28,83 +28,36 @@
     <div class="section-home-page">
         <h1 class="section-header">Popular Mobiles</h1>
         <div class="mobiles-product-cards">
-            <div class="mobiles-product-card">
-                <div class="mobiles-product-card-image">
-                    <img src="img\apple iphone 15.jpg" alt="iphone 15">
-                </div>
-                <a href="./product.php" style="text-decoration: none;  color: inherit">
-                    <div class="mobiles-product-card-heading">
-                        Apple iPhone 15 (12mobiles-8 GB) - Blue
-                    </div>
-                    <div class="mobiles-product-discount-price">
-                    Price: &#8377; 66,100
-                    </div>
-                    <div class="mobiles-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-                </a>
-            </div>
-            <div class="mobiles-product-card">
-                <div class="mobiles-product-card-image">
-                    <img src="img\apple iphone 15.jpg" alt="iphone 15">
-                </div>
-                <div class="mobiles-product-card-heading">
-                    Apple iPhone 15 (12mobiles-8 GB) - Blue
-                </div>
-                <div class="mobiles-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="mobiles-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                <div class="mobiles-product-card-image">
-                    <img src="img\apple iphone 15.jpg" alt="iphone 15">
-                </div>
-                <div class="mobiles-product-card-heading">
-                    Apple iPhone 15 (12mobiles-8 GB) - Blue
-                </div>
-                <div class="mobiles-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="mobiles-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                <div class="mobiles-product-card-image">
-                    <img src="img\apple iphone 15.jpg" alt="iphone 15">
-                </div>
-                <div class="mobiles-product-card-heading">
-                    Apple iPhone 15 (12mobiles-8 GB) - Blue
-                </div>
-                <div class="mobiles-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="mobiles-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                <div class="mobiles-product-card-image">
-                    <img src="img\apple iphone 15.jpg" alt="iphone 15">
-                </div>
-                <div class="mobiles-product-card-heading">
-                    Apple iPhone 15 (12mobiles-8 GB) - Blue
-                </div>
-                <div class="mobiles-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="mobiles-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
+            <?php
+            $sql = "SELECT * FROM `products` WHERE product_category_id = '1'";
+            $result = mysqli_query($conn, $sql);
+            while($row=mysqli_fetch_assoc($result)){
+                $product_name = $row['product_name'];
+                $product_image = $row['product_url'];
+                $product_discount_price = $row['product_price'];
+                $product_actual_price = $row['product_actual_price'];
+
+                echo '
+                    <div class="mobiles-product-card">
+                        <div class="mobiles-product-card-image">
+                            <img src="' . $product_image . '" alt="iphone 15">
+                        </div>
+                        <a href="./product.php" style="text-decoration: none;  color: inherit">
+                            <div class="mobiles-product-card-heading">
+                                '. $product_name .'
+                            </div>
+                            <div class="mobiles-product-discount-price">
+                            Price: &#8377; '. $product_discount_price .'
+                            </div>
+                            <div class="mobiles-product-actual-price">
+                                M.R.P.: &#8377;'. $product_actual_price .'
+                            </div>
+                            <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
+                        </a>
+                    </div>';
+            }
+            ?>
+            
             
         </div>
     </div>
