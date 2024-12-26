@@ -90,9 +90,36 @@
     </style>
 </head>
 <body>
+
+    <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            include './Components/dbconnect.php';
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $sql = "SELECT * FROM `users` WHERE username='$username'";
+            $result = mysqli_query($conn, $sql);
+            $checkNoUser = mysqli_num_rows($result);
+            if($checkNoUser == 1){
+                $row = mysqli_fetch_assoc($result);
+                if(password_verify($password, $row['password'])){
+                    session_start();
+                    $_SESSION['login'] = true;
+                    $_SESSION['username'] = $row['username'];
+                    // echo 'login sucessfull';
+                    header("Location: /electromarts/");
+                }
+                else{
+                    echo 'Login Failed! Incomplete Password';
+                }
+            }
+
+        }
+
+    ?>
+
     <div class="login-container">
         <h2>Login</h2>
-        <form action="login.php" method="POST">
+        <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
