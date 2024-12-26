@@ -32,6 +32,7 @@
             $sql = "SELECT * FROM `products` WHERE product_category_id = '1'";
             $result = mysqli_query($conn, $sql);
             while($row=mysqli_fetch_assoc($result)){
+                $product_id = $row['product_id'];
                 $product_name = $row['product_name'];
                 $product_image = $row['product_url'];
                 $product_discount_price = $row['product_price'];
@@ -42,7 +43,7 @@
                         <div class="mobiles-product-card-image">
                             <img src="' . $product_image . '" alt="iphone 15">
                         </div>
-                        <a href="./product.php" style="text-decoration: none;  color: inherit">
+                        <a href="./product.php?id='.$product_id .'&name='. $product_name .'" style="text-decoration: none;  color: inherit">
                             <div class="mobiles-product-card-heading">
                                 '. $product_name .'
                             </div>
@@ -57,7 +58,6 @@
                     </div>';
             }
             ?>
-            
             
         </div>
     </div>
