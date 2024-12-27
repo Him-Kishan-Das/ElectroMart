@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    $id = $_GET['catid'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,86 +16,36 @@
 </head>
 <body>
     <?php
+        include './Components/dbconnect.php';
         include './Components/Navbar.php';
     ?>
     <div class="brands">
-        <h1 class="brands-header-section">Iphone</h1>
+        <!-- <h1 class="brands-header-section">Iphone</h1> -->
         <div class="mobiles-product-cards">
-            <div class="mobiles-product-card">
-                    <div class="mobiles-product-card-image">
-                        <img src="img/iphone 16 256 gb.jpg" alt="iphone 15">
-                    </div>
-                    <div class="mobiles-product-card-heading">
-                        Apple iPhone 15 (128 GB) - Blue
-                    </div>
-                    <div class="mobiles-product-discount-price">
-                       Price: &#8377; 66,100
-                    </div>
-                    <div class="mobiles-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                    <div class="mobiles-product-card-image">
-                        <img src="img/iphone 16 256 gb.jpg" alt="iphone 15">
-                    </div>
-                    <div class="mobiles-product-card-heading">
-                        Apple iPhone 15 (128 GB) - Blue
-                    </div>
-                    <div class="mobiles-product-discount-price">
-                       Price: &#8377; 66,100
-                    </div>
-                    <div class="mobiles-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                    <div class="mobiles-product-card-image">
-                        <img src="img/iphone 16 256 gb.jpg" alt="iphone 15">
-                    </div>
-                    <div class="mobiles-product-card-heading">
-                        Apple iPhone 15 (128 GB) - Blue
-                    </div>
-                    <div class="mobiles-product-discount-price">
-                       Price: &#8377; 66,100
-                    </div>
-                    <div class="mobiles-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                    <div class="mobiles-product-card-image">
-                        <img src="img/iphone 16 256 gb.jpg" alt="iphone 15">
-                    </div>
-                    <div class="mobiles-product-card-heading">
-                        Apple iPhone 15 (128 GB) - Blue
-                    </div>
-                    <div class="mobiles-product-discount-price">
-                       Price: &#8377; 66,100
-                    </div>
-                    <div class="mobiles-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="mobiles-product-card">
-                    <div class="mobiles-product-card-image">
-                        <img src="img/iphone 16 256 gb.jpg" alt="iphone 15">
-                    </div>
-                    <div class="mobiles-product-card-heading">
-                        Apple iPhone 15 (128 GB) - Blue
-                    </div>
-                    <div class="mobiles-product-discount-price">
-                       Price: &#8377; 66,100
-                    </div>
-                    <div class="mobiles-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
-            </div>
+        <?php
+            $sql = "SELECT * FROM `products` WHERE product_category_id = '$id'";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+                echo '<div class="mobiles-product-card">
+                        <div class="mobiles-product-card-image">
+                            <img src="'. $row['product_url'] .'" alt="'. $row['product_name'] .'">
+                        </div>
+                        <div class="mobiles-product-card-heading">
+                           '. $row['product_name'] .'
+                        </div>
+                        <div class="mobiles-product-discount-price">
+                        Price: &#8377; '. $row['product_price'] .'
+                        </div>
+                        <div class="mobiles-product-actual-price">
+                            M.R.P.: &#8377;' . $row['product_actual_price'] . '
+                        </div>
+                        <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
+                </div>';
+            }
+            
+        ?>
+            
+            
         </div>
     </div>
 </body>

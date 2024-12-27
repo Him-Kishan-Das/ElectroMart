@@ -10,12 +10,13 @@
             <h1>EMart</h1>
             <div class="logo-name">ElectroMart</div>
         </div>
+        
         <ul class="nav">
             <li class="nav-items"><a href="./">Home</a></li>
-            <li class="nav-items"><a href="./mobiles.php">Mobiles</a></li>
-            <li class="nav-items"><a href="./laptops.php">Laptops</a></li>
-            <li class="nav-items"><a href="./cameras.php">Cameras</a></li>
-            <li class="nav-items"><a href="./headphones.php">Headphones</a></li>
+            <li class="nav-items"><a href="./mobiles.php?catid=1">Mobiles</a></li>
+            <li class="nav-items"><a href="./laptops.php?catid=2">Laptops</a></li>
+            <li class="nav-items"><a href="./cameras.php?catid=3">Cameras</a></li>
+            <li class="nav-items"><a href="./headphones.php?catid=4">Headphones</a></li>
         </ul>
     </div>
     
