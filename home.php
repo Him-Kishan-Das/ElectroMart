@@ -66,84 +66,32 @@
     <div class="section-home-page">
         <h1 class="section-header">Popular Laptops</h1>
         <div class="laptop-product-cards">
-            <div class="laptop-product-card">
-                <div class="laptop-product-card-image">
-                    <img src="img\Asus vivobook pro 15.webp" alt="iphone 15">
-                </div>
-                <a href="./item">
-                    <div class="laptop-product-card-heading">
-                        Asus Vivobook Pro 15 - Silver
-                    </div>
-                    <div class="laptop-product-discount-price">
-                       Price: &#8377; 66,100
-                    </div>
-                    <div class="laptop-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                    </div>
-                    <button class="laptop-product-card-add-to-cart">Add to Cart</button>
-                </a>
-            </div>
-            <div class="laptop-product-card">
-                <div class="laptop-product-card-image">
-                    <img src="img\Asus vivobook pro 15.webp" alt="iphone 15">
-                </div>
-                <div class="laptop-product-card-heading">
-                    Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="laptop-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="laptop-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="laptop-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="laptop-product-card">
-                <div class="laptop-product-card-image">
-                    <img src="img\Asus vivobook pro 15.webp" alt="iphone 15">
-                </div>
-                <div class="laptop-product-card-heading">
-                    Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="laptop-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="laptop-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="laptop-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="laptop-product-card">
-                <div class="laptop-product-card-image">
-                    <img src="img\Asus vivobook pro 15.webp" alt="iphone 15">
-                </div>
-                <div class="laptop-product-card-heading">
-                    Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="laptop-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="laptop-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="laptop-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            <div class="laptop-product-card">
-                <div class="laptop-product-card-image">
-                    <img src="img\Asus vivobook pro 15.webp" alt="iphone 15">
-                </div>
-                <div class="laptop-product-card-heading">
-                    Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="laptop-product-discount-price">
-                   Price: &#8377; 66,100
-                </div>
-                <div class="laptop-product-actual-price">
-                    M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="laptop-product-card-add-to-cart">Add to Cart</button>
-            </div>
-            
+            <?php
+                $sql = "SELECT * FROM `products` WHERE product_category_id = '2'";
+                $result = mysqli_query($conn, $sql);
+                while($row=mysqli_fetch_assoc($result)){
+                    echo '
+                        <div class="laptop-product-card">
+                            <div class="laptop-product-card-image">
+                                <img src="'. $row['product_url'] .'" alt="iphone 15">
+                            </div>
+                            <a href="./product.php?id='.$row['product_id'] .'&name='. $row['product_name'] .'" style="text-decoration: none;  color: inherit">
+                                <div class="laptop-product-card-heading">
+                                    '. $row['product_name'] .'
+                                </div>
+                                <div class="laptop-product-discount-price">
+                                Price: &#8377; '. $row['product_price'] .'
+                                </div>
+                                <div class="laptop-product-actual-price">
+                                    M.R.P.: &#8377;'. $row['product_actual_price'] .'
+                                </div>
+                                <button class="laptop-product-card-add-to-cart">Add to Cart</button>
+                            </a>
+                        </div>
+                    ';
+                }
+
+            ?>
             
         </div>
     </div>
@@ -152,81 +100,33 @@
     <div class="section-home-page">
         <h1 class="section-header">Popular Cameras</h1>
         <div class="camera-product-cards">
-             <div class="camera-product-card">
-                <div class="camera-product-card-image">
-                    <img src="img\Canon.jpg" alt="iphone 15">
-                </div>
-                <div class="camera-product-card-heading">
-                        Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="camera-product-discount-price">
-                    Price: &#8377; 66,100
-                </div>
-                <div class="camera-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="camera-product-card-add-to-cart">Add to Cart</button>
-             </div>           
-             <div class="camera-product-card">
-                <div class="camera-product-card-image">
-                    <img src="img\Canon.jpg" alt="iphone 15">
-                </div>
-                <div class="camera-product-card-heading">
-                        Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="camera-product-discount-price">
-                    Price: &#8377; 66,100
-                </div>
-                <div class="camera-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="camera-product-card-add-to-cart">Add to Cart</button>
-             </div>           
-             <div class="camera-product-card">
-                <div class="camera-product-card-image">
-                    <img src="img\Canon.jpg" alt="iphone 15">
-                </div>
-                <div class="camera-product-card-heading">
-                        Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="camera-product-discount-price">
-                    Price: &#8377; 66,100
-                </div>
-                <div class="camera-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="camera-product-card-add-to-cart">Add to Cart</button>
-             </div>           
-             <div class="camera-product-card">
-                <div class="camera-product-card-image">
-                    <img src="img\Canon.jpg" alt="iphone 15">
-                </div>
-                <div class="camera-product-card-heading">
-                        Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="camera-product-discount-price">
-                    Price: &#8377; 66,100
-                </div>
-                <div class="camera-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="camera-product-card-add-to-cart">Add to Cart</button>
-             </div>           
-             <div class="camera-product-card">
-                <div class="camera-product-card-image">
-                    <img src="img\Canon.jpg" alt="iphone 15">
-                </div>
-                <div class="camera-product-card-heading">
-                        Asus Vivobook Pro 15 - Silver
-                </div>
-                <div class="camera-product-discount-price">
-                    Price: &#8377; 66,100
-                </div>
-                <div class="camera-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="camera-product-card-add-to-cart">Add to Cart</button>
-             </div>           
+            <?php
+                $sql = "SELECT * FROM `products` WHERE product_category_id = '3'";
+                $result = mysqli_query($conn, $sql);
+                while($row=mysqli_fetch_assoc($result)){
+                    echo '
+                        <div class="camera-product-card">
+                            <div class="camera-product-card-image">
+                                <img src="'. $row['product_url'] .'" alt="'. $row['product_name'] .'">
+                            </div>
+                            <a href="./product.php?id='.$row['product_id'] .'&name='. $row['product_name'] .'" style="text-decoration: none;  color: inherit">
+                                <div class="camera-product-card-heading">
+                                        '. $row['product_name'] .'
+                                </div>
+                                <div class="camera-product-discount-price">
+                                    Price: &#8377; '. $row['product_price'] .'
+                                </div>
+                                <div class="camera-product-actual-price">
+                                        M.R.P.: &#8377;'. $row['product_actual_price'] .'
+                                </div>
+                                <button class="camera-product-card-add-to-cart">Add to Cart</button>
+                            </a>
+                        </div>
+                    ';
+                }
+            ?>
+                        
+                      
             
         </div>
     </div>
@@ -235,21 +135,30 @@
     <div class="section-home-page">
         <h1 class="section-header">Popular Headphones</h1>
         <div class="headphones-product-cards">
-            <div class="headphones-product-card">
-                <div class="headphones-product-card-image">
-                    <img src="img\boAt Rockerz.webp" alt="iphone 15">
-                </div>
-                <div class="headphones-product-card-heading">
-                       boAt Rockerz
-                </div>
-                <div class="headphones-product-discount-price">
-                    Price: &#8377; 66,100
-                </div>
-                <div class="headphones-product-actual-price">
-                        M.R.P.: &#8377;79,600.00
-                </div>
-                <button class="headphones-product-card-add-to-cart">Add to Cart</button>
-            </div>
+            <?php
+                $sql = "SELECT * FROM `products` WHERE product_category_id = '4'";
+                $result = mysqli_query($conn, $sql);
+                while($row=mysqli_fetch_assoc($result)){
+                    echo '<div class="headphones-product-card">
+                            <div class="headphones-product-card-image">
+                                <img src="'. $row['product_url'] .'" alt="'. $row['product_name'] .'">
+                            </div>
+                            <a href="./product.php?id='.$row['product_id'] .'&name='. $row['product_name'] .'" style="text-decoration: none;  color: inherit">
+                                <div class="headphones-product-card-heading">
+                                    '. $row['product_name'] .'
+                                </div>
+                                <div class="headphones-product-discount-price">
+                                    Price: &#8377;'. $row['product_price'] .'
+                                </div>
+                                <div class="headphones-product-actual-price">
+                                        M.R.P.: &#8377;'. $row['product_actual_price'] .'
+                                </div>
+                                <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                            </a>
+                        </div>';
+                }
+            ?>
+            
         </div>     
     </div> 
 </div>

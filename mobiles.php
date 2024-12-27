@@ -30,16 +30,18 @@
                         <div class="mobiles-product-card-image">
                             <img src="'. $row['product_url'] .'" alt="'. $row['product_name'] .'">
                         </div>
-                        <div class="mobiles-product-card-heading">
-                           '. $row['product_name'] .'
-                        </div>
-                        <div class="mobiles-product-discount-price">
-                        Price: &#8377; '. $row['product_price'] .'
-                        </div>
-                        <div class="mobiles-product-actual-price">
-                            M.R.P.: &#8377;' . $row['product_actual_price'] . '
-                        </div>
-                        <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
+                        <a href="./product.php?id='.$row['product_id'] .'&name='. $row['product_name'] .'" style="text-decoration: none;  color: inherit">
+                            <div class="mobiles-product-card-heading">
+                            '. $row['product_name'] .'
+                            </div>
+                            <div class="mobiles-product-discount-price">
+                            Price: &#8377; '. $row['product_price'] .'
+                            </div>
+                            <div class="mobiles-product-actual-price">
+                                M.R.P.: &#8377;' . $row['product_actual_price'] . '
+                            </div>
+                            <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
+                        </a>
                 </div>';
             }
             

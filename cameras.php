@@ -31,16 +31,18 @@
                                 <div class="camera-product-card-image">
                                     <img src="'. $row['product_url'] .'" alt="'. $row['product_name'] .'">
                                 </div>
-                                <div class="camera-product-card-heading">
-                                    '. $row['product_name'] .'
-                                </div>
-                                <div class="camera-product-discount-price">
-                                    Price: &#8377; '. $row['product_price'] .'
-                                </div>
-                                <div class="camera-product-actual-price">
-                                    M.R.P.: &#8377;'. $row['product_actual_price'] .'
-                                </div>
-                                <button class="camera-product-card-add-to-cart">Add to Cart</button>
+                                <a href="./product.php?id='.$row['product_id'] .'&name='. $row['product_name'] .'" style="text-decoration: none;  color: inherit">
+                                    <div class="camera-product-card-heading">
+                                        '. $row['product_name'] .'
+                                    </div>
+                                    <div class="camera-product-discount-price">
+                                        Price: &#8377; '. $row['product_price'] .'
+                                    </div>
+                                    <div class="camera-product-actual-price">
+                                        M.R.P.: &#8377;'. $row['product_actual_price'] .'
+                                    </div>
+                                    <button class="camera-product-card-add-to-cart">Add to Cart</button>
+                                </a>
                             </div>';
                 }
             ?>            

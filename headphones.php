@@ -33,16 +33,18 @@
                             <div class="headphones-product-card-image">
                                 <img src="'. $row['product_url'] .'" alt="iphone 15">
                             </div>
-                            <div class="headphones-product-card-heading">
-                                '. $row['product_name'] .'
-                            </div>
-                            <div class="headphones-product-discount-price">
-                                Price: &#8377; '. $row['product_price'] .'
-                            </div>
-                            <div class="headphones-product-actual-price">
-                                M.R.P.: &#8377;'. $row['product_actual_price'] .'
-                            </div>
-                            <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                            <a href="./product.php?id='.$row['product_id'] .'&name='. $row['product_name'] .'" style="text-decoration: none;  color: inherit">
+                                <div class="headphones-product-card-heading">
+                                    '. $row['product_name'] .'
+                                </div>
+                                <div class="headphones-product-discount-price">
+                                    Price: &#8377; '. $row['product_price'] .'
+                                </div>
+                                <div class="headphones-product-actual-price">
+                                    M.R.P.: &#8377;'. $row['product_actual_price'] .'
+                                </div>
+                                <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                            </a>
                         </div>';
                 }
             ?>
