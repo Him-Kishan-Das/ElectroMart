@@ -6,7 +6,7 @@
 
 .headphones-product-card{
     width: 17rem;
-    height: 21rem;
+    height: 29rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -32,6 +32,8 @@
 
 .headphones-product-card-heading{
     font-size: 18px;
+    height: 7   0px;
+    overflow: hidden;
     font-weight: bold;
     text-align: center;
 }

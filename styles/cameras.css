@@ -6,7 +6,7 @@
 
 .camera-product-card{
     width: 17rem;
-    height: 20em;
+    height: 26rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -34,6 +34,8 @@
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+    height: 60px;
+    margin: 10px;
 }
 
 .camera-product-discount-price{
