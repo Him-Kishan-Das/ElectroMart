@@ -104,6 +104,7 @@
                 if(password_verify($password, $row['password'])){
                     session_start();
                     $_SESSION['login'] = true;
+                    $_SESSION['userid'] = $row['user_id'];
                     $_SESSION['username'] = $row['username'];
                     // echo 'login sucessfull';
                     header("Location: /electromarts/");

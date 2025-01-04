@@ -1,6 +1,7 @@
 <?php
     
     session_start();
+    $userid = $_SESSION['userid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,9 @@
                             <div class="mobiles-product-actual-price">
                                 M.R.P.: &#8377;'. $product_actual_price .'
                             </div>
-                            <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
+                            <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
+                                <button class="mobiles-product-card-add-to-cart">Add to Cart</button>
+                            </a>
                         </a>
                     </div>';
             }
@@ -85,7 +88,9 @@
                                 <div class="laptop-product-actual-price">
                                     M.R.P.: &#8377;'. $row['product_actual_price'] .'
                                 </div>
-                                <button class="laptop-product-card-add-to-cart">Add to Cart</button>
+                                <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
+                                    <button class="laptop-product-card-add-to-cart">Add to Cart</button>
+                                </a>
                             </a>
                         </div>
                     ';
@@ -119,7 +124,9 @@
                                 <div class="camera-product-actual-price">
                                         M.R.P.: &#8377;'. $row['product_actual_price'] .'
                                 </div>
-                                <button class="camera-product-card-add-to-cart">Add to Cart</button>
+                                <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
+                                    <button class="camera-product-card-add-to-cart">Add to Cart</button>
+                                </a>
                             </a>
                         </div>
                     ';
@@ -153,7 +160,9 @@
                                 <div class="headphones-product-actual-price">
                                         M.R.P.: &#8377;'. $row['product_actual_price'] .'
                                 </div>
-                                <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                                <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
+                                    <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                                </a>
                             </a>
                         </div>';
                 }

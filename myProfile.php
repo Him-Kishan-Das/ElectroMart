@@ -157,6 +157,7 @@
 </head>
 <body>
     <?php 
+        include './Components/dbconnect.php';
         include './Components/Navbar.php';
     ?>
 
@@ -172,23 +173,32 @@
                 
                 <!-- <img src="Components/icons/user-solid.svg" alt="Profile Avatar"> -->
             </div>
+            <?php
+                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                    $username = $_POST['username'];
+                    $name= $_POST['name'];
+                    $email = $_POST['email'];
+                    $password =$_POST['password'];
+                    $result = "UPDATE `users` SET `username`='$username',`name`='$name',`email`='$email',`password`='$password',`timestamp`=current_timestamp() WHERE ";
+                }
+            ?>
 
             <form id="profile-form" action="update_profile.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="johndoe" disabled>
+                    <input type="text" id="username" name="username" value="" >
                 </div>
                 <div class="form-group">
                     <label for="username">Name</label>
-                    <input type="text" id="name" name="name" value="johndoe" disabled>
+                    <input type="text" id="name" name="name" value="" >
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="johndoe@example.com" disabled>
+                    <input type="email" id="email" name="email" value="" >
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value="password123" disabled>
+                    <input type="password" id="password" name="password" value="" >
                 </div>
                 <button type="button" class="save-button" onclick="enableEditing()">Edit Profile</button>
             </form>

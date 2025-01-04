@@ -2,7 +2,7 @@
     session_start();
     $id = $_GET['id'];
     $name = $_GET['name'];
-
+    $userid = $_SESSION['userid'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,9 @@
             </div>
             <hr class=product-horizontal-line>
             <div class="product-buttons">
-                <button class="product-button product-add-to-cart">Add to Cart</button>
+                <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
+                    <button class="product-button product-add-to-cart">Add to Cart</button>
+                </a>
                 <button class="product-button product-buy-button">Buy</button>
             </div>
         </div>';

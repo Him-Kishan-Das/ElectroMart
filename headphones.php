@@ -1,6 +1,7 @@
 <?php
     session_start();
     $id = $_GET['catid'];
+    $userid = $_SESSION['userid'];
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +44,9 @@
                                 <div class="headphones-product-actual-price">
                                     M.R.P.: &#8377;'. $row['product_actual_price'] .'
                                 </div>
-                                <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                                <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
+                                    <button class="headphones-product-card-add-to-cart">Add to Cart</button>
+                                </a>
                             </a>
                         </div>';
                 }
