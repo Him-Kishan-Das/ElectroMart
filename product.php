@@ -56,10 +56,17 @@
                 <a href="./addtoCart.php?prodid='. $row['product_id'].'&userid='. $userid .'">
                     <button class="product-button product-add-to-cart">Add to Cart</button>
                 </a>
-                <button class="product-button product-buy-button">Buy</button>
+                <form action="myProfile.php" method="POST">
+                    <button class="product-button product-buy-button" type="submit">Buy</button>
+                </form>
             </div>
         </div>';
-
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $sql2 = "INSERT INTO `orders`(`user_id`, `product_id`, `order_timestamp`) VALUES ('$userid','$id',current_timestamp())";
+            $result2 = mysqli_query($conn, $sql2);
+            header("Location: ./myProfile.php");
+        }
+       
         ?>
     </div>
 </body>

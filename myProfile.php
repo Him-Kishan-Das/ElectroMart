@@ -41,7 +41,7 @@
             <form id="profile-form" action="myProfile.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="<?php echo $row['username'] ?>" >
+                    <input type="text" id="username" name="user_name" value="<?php echo $row['username'] ?>" >
                 </div>
                 <div class="form-group">
                     <label for="username">Name</label>
@@ -51,19 +51,15 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" value="<?php echo $row['email'] ?>" >
                 </div>
-                <!-- <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value="<?php echo $row['password'] ?>" >
-                </div> -->
                 <button type="submit" class="save-button">Edit Profile</button>
             </form>
             <?php
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
-                    $username = $_POST['username'];
+                    $username = $_POST['user_name'];
                     $name= $_POST['name'];
                     $email = $_POST['email'];
                     $sql2 = "UPDATE `users` SET `username`='$username',`name`='$name',`email`='$email' WHERE `user_id`='$userid'";
-                    $result = mysqli_query($conn, $sql2);
+                    $result2 = mysqli_query($conn, $sql2);
                     
                 }
             ?>
@@ -97,10 +93,7 @@
     </div>
 
     <script>
-        function enableEditing() {
-            const inputs = document.querySelectorAll('#profile-form input');
-            inputs.forEach(input => input.disabled = false);
-        }
+        
     </script>
 </body>
 </html>
