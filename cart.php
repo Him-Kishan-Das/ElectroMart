@@ -41,7 +41,7 @@
                 $total_price += $row2['product_price'];
             }
             echo '<div class="cart-summary">
-                Total: &#8377;'. $total_price .'
+                Total: &#8377; '. $total_price .'
                 <br>
                 <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
             </div>';

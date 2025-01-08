@@ -1,5 +1,7 @@
 <?php
     session_start();
+    include './Components/dbconnect.php';
+    $userid = $_SESSION['userid'];
 ?>
 
 <!DOCTYPE html>
@@ -8,156 +10,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-            color: #333;
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-        }
-
-        .header h1 {
-            font-size: 24px;
-        }
-
-        .header img {
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-        }
-
-        .container {
-            display: flex;
-            margin: 20px;
-        }
-
-        .sidebar {
-            width: 20%;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin: 15px 0;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .content {
-            flex: 1;
-            background: #fff;
-            margin-left: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .profile-header img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        .profile-details {
-            flex: 1;
-            margin-left: 20px;
-        }
-
-        .items-section {
-            margin-top: 30px;
-        }
-
-        .items-section h3 {
-            margin-bottom: 10px;
-        }
-
-        .items-list {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .items-list th, .items-list td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .items-list th {
-            background: #f4f4f4;
-            font-weight: bold;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .form-group input:focus {
-            border-color: #4CAF50;
-            outline: none;
-            box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
-        }
-
-        .save-button {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .save-button:hover {
-            background: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="./styles/myProfile.css">
 </head>
 <body>
     <?php 
-        include './Components/dbconnect.php';
         include './Components/Navbar.php';
     ?>
 
@@ -173,35 +29,44 @@
                 
                 <!-- <img src="Components/icons/user-solid.svg" alt="Profile Avatar"> -->
             </div>
+            
+            <?php
+                $stmt = $conn->prepare("SELECT * FROM `users` WHERE user_id = ?");
+                $stmt->bind_param("s", $userid);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                
+            ?>
+            <form id="profile-form" action="myProfile.php" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="<?php echo $row['username'] ?>" >
+                </div>
+                <div class="form-group">
+                    <label for="username">Name</label>
+                    <input type="text" id="name" name="name" value="<?php echo $row['name'] ?>" >
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="<?php echo $row['email'] ?>" >
+                </div>
+                <!-- <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" value="<?php echo $row['password'] ?>" >
+                </div> -->
+                <button type="submit" class="save-button">Edit Profile</button>
+            </form>
             <?php
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username = $_POST['username'];
                     $name= $_POST['name'];
                     $email = $_POST['email'];
-                    $password =$_POST['password'];
-                    $result = "UPDATE `users` SET `username`='$username',`name`='$name',`email`='$email',`password`='$password',`timestamp`=current_timestamp() WHERE ";
+                    $sql2 = "UPDATE `users` SET `username`='$username',`name`='$name',`email`='$email' WHERE `user_id`='$userid'";
+                    $result = mysqli_query($conn, $sql2);
+                    
                 }
             ?>
-
-            <form id="profile-form" action="update_profile.php" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="" >
-                </div>
-                <div class="form-group">
-                    <label for="username">Name</label>
-                    <input type="text" id="name" name="name" value="" >
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="" >
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value="" >
-                </div>
-                <button type="button" class="save-button" onclick="enableEditing()">Edit Profile</button>
-            </form>
 
             <div class="items-section">
                 <h3>Items Bought</h3>
