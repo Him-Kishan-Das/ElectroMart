@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    include './Components/dbconnect.php';
+    $userid = $_SESSION['userid'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,33 +21,32 @@
     ?>
 
     <div class="cart-container">
-        <div class="cart-item">
-            <img src="item1.jpg" alt="Item 1" class="item-image">
-            <div class="item-details">
-                <div class="item-title">Wireless Mouse</div>
-                <div class="item-price">$25</div>
-            </div>
-        </div>
-        <div class="cart-item">
-            <img src="item2.jpg" alt="Item 2" class="item-image">
-            <div class="item-details">
-                <div class="item-title">Mechanical Keyboard</div>
-                <div class="item-price">$40</div>
-            </div>
-        </div>
-        <div class="cart-item">
-            <img src="item3.jpg" alt="Item 3" class="item-image">
-            <div class="item-details">
-                <div class="item-title">27" Monitor</div>
-                <div class="item-price">$150</div>
-            </div>
-        </div>
+        <?php
+            $sql = "SELECT * FROM `cart` WHERE cart_user_id = '$userid'";
+            $result = mysqli_query($conn, $sql);
 
-        <div class="cart-summary">
-            Total: $215
-            <br>
-            <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
-        </div>
+            $total_price= 0;
+            while($row=mysqli_fetch_assoc($result)){
+                $prId = $row['cart_product_id'];
+                $sql2 = "SELECT * FROM `products` WHERE product_id='$prId'";
+                $result2 = mysqli_query($conn, $sql2);
+                $row2 = mysqli_fetch_assoc($result2);
+                echo '<div class="cart-item">
+                        <img src="'. $row2['product_url'] .'" alt="'. $row2['product_name'] .'" class="item-image">
+                        <div class="item-details">
+                            <div class="item-title">'. $row2['product_name'] .'</div>
+                            <div class="item-price">&#8377;'. $row2['product_price'] .'</div>
+                        </div>
+                    </div>';     
+                $total_price += $row2['product_price'];
+            }
+            echo '<div class="cart-summary">
+                Total: &#8377;'. $total_price .'
+                <br>
+                <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
+            </div>';
+        ?>
+
     </div>
 </body>
 </html>
