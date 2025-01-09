@@ -21,15 +21,6 @@
       
 
         <div class="content">
-            <div class="profile-header">
-                <div class="profile-details">
-                    <h2>him_kishan_das01</h2>
-                    <p>Him Kishan Das</p>
-                </div>
-                
-                <!-- <img src="Components/icons/user-solid.svg" alt="Profile Avatar"> -->
-            </div>
-            
             <?php
                 $stmt = $conn->prepare("SELECT * FROM `users` WHERE user_id = ?");
                 $stmt->bind_param("s", $userid);
@@ -38,6 +29,15 @@
                 $row = $result->fetch_assoc();
                 
             ?>
+            <div class="profile-header">
+                <div class="profile-details">
+                    <h2><?php echo $row['username']; ?></h2>
+                    <p><?php echo $row['username']; ?></p>
+                </div>
+                
+                <!-- <img src="Components/icons/user-solid.svg" alt="Profile Avatar"> -->
+            </div>
+            
             <form id="profile-form" action="myProfile.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -65,7 +65,8 @@
             ?>
 
             <div class="items-section">
-                <h3>Items Bought</h3>
+                <h3>Orders</h3>
+                
                 <table class="items-list">
                     <thead>
                         <tr>
@@ -74,18 +75,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Wireless Mouse</td>
-                            <td>$25</td>
-                        </tr>
-                        <tr>
-                            <td>Keyboard</td>
-                            <td>$40</td>
-                        </tr>
-                        <tr>
-                            <td>Monitor</td>
-                            <td>$150</td>
-                        </tr>
+                    <?php
+                        $sql3 = "SELECT * FROM `orders` WHERE `user_id`='$userid'";
+                        $result3 = mysqli_query($conn, $sql3);
+                        while($row3 = mysqli_fetch_assoc($result3)){
+                            $sql4 = "SELECT * FROM `products` WHERE `product_id` = {$row3['product_id']}";
+                            $result4 = mysqli_query($conn, $sql4);
+                            $row4 = mysqli_fetch_assoc(($result4));
+                            echo '<tr>
+                                    <td>'. $row4['product_name'] .'</td>
+                                    <td>&#8377;'. $row4['product_price'] .'</td>
+                                </tr>';
+                        }
+
+                    ?>
                     </tbody>
                 </table>
             </div>
