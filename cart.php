@@ -37,9 +37,30 @@
                             <div class="item-title">'. $row2['product_name'] .'</div>
                             <div class="item-price">&#8377;'. $row2['product_price'] .'</div>
                         </div>
+                        <form method="POST" action="">
+                            <input type="hidden" name="remove_id" value="'. $prId .'">
+                            <button type="submit" class="item-remove">Remove</button>
+                        </form>
                     </div>';     
                 $total_price += $row2['product_price'];
             }
+
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_id'])) {
+                $remove_id = mysqli_real_escape_string($conn, $_POST['remove_id']);
+                $delete_sql = "DELETE FROM `cart` WHERE `cart_product_id` = '$remove_id'";
+                if (mysqli_query($conn, $delete_sql)) {
+                    // Redirect to the same page to refresh the cart
+                    echo '<script>
+                            window.location.href = "cart.php";
+                        </script>';
+                    exit();
+                } else {
+                    echo "Error removing item: " . mysqli_error($conn);
+                }
+            }
+
+
             echo '<div class="cart-summary">
                 Total: &#8377; '. $total_price .'
                 <br>

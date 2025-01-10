@@ -57,6 +57,20 @@ body {
     color: #555;
 }
 
+.item-remove{
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.item-remove:hover{
+    background-color: rgb(229, 0, 0);
+    cursor: pointer;
+}
+
 .cart-summary {
     text-align: right;
     margin-top: 20px;

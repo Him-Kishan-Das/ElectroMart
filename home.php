@@ -1,7 +1,8 @@
 <?php
     
     session_start();
-    $userid = $_SESSION['userid'];
+    $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : null;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
